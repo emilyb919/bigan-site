@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Request Preview Access — BIGAN</title>
+<meta name="description" content="Join the BIGAN preview cohort. Free access in exchange for early feedback. Limited to a small group of pharmaceutical and biotech professionals." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber-deep: #C45503;
+    --amber: #CE5F03;
+    --orange-warm: #E17709;
+    --orange: #DB6F17;
+    --gold: #F0A500;
+    --gold-bright: #F0B40F;
+    --yellow: #F0DC78;
+    --yellow-bright: #F0E169;
+
+    --ink: #0A0A0A;
+    --ink-soft: #2A2A2A;
+    --ink-mute: #6B6B6B;
+    --ink-faint: #A0A0A0;
+    --white: #FFFFFF;
+    --off-white: #FAFAFA;
+    --line: #ECECEC;
+    --line-strong: #D4D4D4;
+
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'Geist', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV (matches homepage) ===== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--ink);
+  }
+  .nav-brand img { width: 32px; height: 32px; object-fit: contain; }
+  .nav-brand-name { font-weight: 700; font-size: 20px; letter-spacing: -0.03em; }
+
+  .nav-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--ink-mute); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--amber-deep); }
+
+  /* ===== MAIN LAYOUT ===== */
+  .preview-page {
+    min-height: calc(100vh - 65px);
+    background:
+      radial-gradient(ellipse 70% 40% at 100% 0%, rgba(240, 165, 0, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 0% 100%, rgba(196, 85, 3, 0.04) 0%, transparent 60%),
+      var(--white);
+    padding: 60px 32px 100px;
+    position: relative;
+  }
+
+  .preview-page::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.022) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, black 20%, transparent 80%);
+    pointer-events: none;
+  }
+
+  .preview-grid {
+    position: relative;
+    max-width: 1180px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* ===== LEFT: Pitch column ===== */
+  .pitch-col {
+    padding-top: 24px;
+  }
+
+  .pitch-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px 6px 8px;
+    background: var(--white);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .pitch-badge-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-bright), var(--amber-deep));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white; font-size: 10px; font-weight: 700;
+  }
+
+  .pitch-title {
+    font-weight: 700;
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .pitch-title em {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 400;
+    background: linear-gradient(135deg, var(--amber-deep) 0%, var(--gold) 70%, var(--gold-bright) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.015em;
+  }
+
+  .pitch-lead {
+    font-size: 18px; line-height: 1.6;
+    color: var(--ink-mute);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  /* What you get */
+  .perk-list {
+    display: flex; flex-direction: column;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+
+  .perk {
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+
+  .perk-icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--amber-deep), var(--gold));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white;
+    margin-top: 2px;
+  }
+  .perk-icon svg { width: 14px; height: 14px; }
+
+  .perk-text {
+    font-size: 16px; line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .perk-text strong {
+    color: var(--ink); font-weight: 600;
+  }
+
+  /* What we ask */
+  .ask-card {
+    background: var(--off-white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 32px;
+  }
+
+  .ask-card h4 {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber-deep);
+    margin-bottom: 12px;
+  }
+
+  .ask-card p {
+    font-size: 15px; line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* After preview note */
+  .after-note {
+    font-size: 13px; line-height: 1.55;
+    color: var(--ink-mute);
+    font-style: italic;
+    padding-left: 16px;
+    border-left: 2px solid var(--gold);
+  }
+
+  /* ===== RIGHT: Form column ===== */
+  .form-col {
+    position: sticky;
+    top: 90px;
+  }
+
+  .form-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      0 12px 40px rgba(196, 85, 3, 0.06);
+  }
+
+  .form-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .form-title {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .form-sub {
+    font-size: 14px;
+    color: var(--ink-mute);
+  }
+
+  .form-row {
+    margin-bottom: 20px;
+  }
+
+  .form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px; font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  label .required {
+    color: var(--amber-deep);
+    margin-left: 2px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    transition: all 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--amber-deep);
+    box-shadow: 0 0 0 3px rgba(196, 85, 3, 0.1);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    font-family: var(--font-body);
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B6B6B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+    cursor: pointer;
+  }
+
+  .field-help {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.4;
+  }
+
+  /* Checkbox group */
+  .checkbox-row {
+    display: flex; align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 14px 16px;
+    background: var(--off-white);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 16px; height: 16px;
+    accent-color: var(--amber-deep);
+    cursor: pointer;
+  }
+
+  .checkbox-row label {
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+
+  .checkbox-row label a {
+    color: var(--amber-deep);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .checkbox-row label a:hover { text-decoration: underline; }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    background: var(--ink);
+    color: var(--white);
+    padding: 16px 24px;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: var(--amber-deep);
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .submit-btn svg { width: 16px; height: 16px; }
+
+  /* Trust strip below form */
+  .form-trust {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+
+  /* Success state */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 32px 16px 16px;
+  }
+
+  .success-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber-deep), var(--gold));
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    color: white;
+    animation: successPop 0.5s ease-out;
+  }
+
+  @keyframes successPop {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .success-icon svg { width: 28px; height: 28px; }
+
+  .success-title {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .success-msg {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .success-meta {
+    font-size: 13px;
+    color: var(--ink-faint);
+    padding: 14px 18px;
+    background: var(--off-white);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+
+  .form-card.is-success .form-header,
+  .form-card.is-success .form-fields { display: none; }
+
+  .form-card.is-success .success-state { display: block; }
+
+  /* ===== FOOTER (compact) ===== */
+  footer {
+    background: var(--ink);
+    color: var(--white);
+    padding: 40px 32px;
+  }
+
+  .footer-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-brand-line {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .footer-brand-line img { width: 24px; height: 24px; }
+
+  .footer-brand-line span {
+    font-weight: 600; font-size: 15px;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-brand-line .by-ahme {
+    font-weight: 400;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 6px;
+  }
+
+  .footer-meta {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .footer-meta a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.2s;
+  }
+
+  .footer-meta a:hover { color: var(--gold-bright); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 960px) {
+    .preview-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .form-col { position: relative; top: 0; }
+    .pitch-col { padding-top: 0; }
+  }
+
+  @media (max-width: 640px) {
+    .preview-page { padding: 40px 20px 60px; }
+    .form-card { padding: 28px 24px; border-radius: 18px; }
+    .form-row-split { grid-template-columns: 1fr; }
+    .nav-inner { padding: 14px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* Entrance animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pitch-badge { animation: fadeUp 0.6s ease-out 0.05s both; }
+  .pitch-title { animation: fadeUp 0.6s ease-out 0.15s both; }
+  .pitch-lead { animation: fadeUp 0.6s ease-out 0.25s both; }
+  .perk-list { animation: fadeUp 0.6s ease-out 0.35s both; }
+  .ask-card { animation: fadeUp 0.6s ease-out 0.45s both; }
+  .after-note { animation: fadeUp 0.6s ease-out 0.55s both; }
+  .form-card { animation: fadeUp 0.7s ease-out 0.3s both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="logo.png" alt="BIGAN logo" />
+      <span class="nav-brand-name">BIGAN</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to home
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="preview-page">
+  <div class="preview-grid">
+
+    <!-- LEFT: Pitch -->
+    <div class="pitch-col">
+      <div class="pitch-badge">
+        <span class="pitch-badge-dot">★</span>
+        <span>Limited preview cohort</span>
+      </div>
+
+      <h1 class="pitch-title">Help shape <em>BIGAN</em> before launch.</h1>
+
+      <p class="pitch-lead">
+        We're inviting a small group of pharmaceutical and biotech professionals to use BIGAN ahead of public release — and tell us what works, what's missing, and where it can go further.
+      </p>
+
+      <div class="perk-list">
+        <div class="perk">
+          <span class="perk-icon">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="perk-text"><strong>Free access</strong> for the duration of the preview period.</div>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="perk-text"><strong>Direct line to the founder</strong> — your feedback shapes the roadmap, not a ticket queue.</div>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="perk-text"><strong>First access</strong> to new tools and modules as they roll out.</div>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="perk-text"><strong>Founding member pricing</strong> when the paid plan launches.</div>
+        </div>
+      </div>
+
+      <div class="ask-card">
+        <h4>What we ask in return</h4>
+        <p>A short NDA, real use over a 2-week structured preview, and honest feedback — what worked, what didn't, what you wish it could do.</p>
+      </div>
+
+      <div class="after-note">
+        After the preview, you'll be the first to hear about pricing and launch plans, with founding-member benefits reserved for cohort participants.
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-col">
+      <div class="form-card" id="formCard">
+
+        <div class="form-header">
+          <h2 class="form-title">Request preview access</h2>
+          <p class="form-sub">Takes about 90 seconds. We'll be in touch within a week.</p>
+        </div>
+
+        <form class="form-fields" id="previewForm" onsubmit="handleSubmit(event)">
+
+          <div class="form-row-split">
+            <div>
+              <label for="firstName">First name <span class="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" required />
+            </div>
+            <div>
+              <label for="lastName">Last name <span class="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="email">Work email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="you@company.com" />
+            <div class="field-help">A work email helps us prioritize industry professionals.</div>
+          </div>
+
+          <div class="form-row">
+            <label for="company">Company or organization</label>
+            <input type="text" id="company" name="company" placeholder="Optional" />
+          </div>
+
+          <div class="form-row">
+            <label for="role">Your role <span class="required">*</span></label>
+            <select id="role" name="role" required>
+              <option value="">Select your role…</option>
+              <option>QA Associate</option>
+              <option>QC Specialist</option>
+              <option>Engineer</option>
+              <option>Manufacturing / Process Associate</option>
+              <option>Supply Chain Lead</option>
+              <option>EHS Manager</option>
+              <option>Executive / Director</option>
+              <option>Consultant</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="experience">Years of GMP experience <span class="required">*</span></label>
+            <select id="experience" name="experience" required>
+              <option value="">Select experience level…</option>
+              <option>Less than 2 years</option>
+              <option>2–5 years</option>
+              <option>5–10 years</option>
+              <option>10–20 years</option>
+              <option>More than 20 years</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="useCase">What would you most want to use BIGAN for?</label>
+            <textarea id="useCase" name="useCase" placeholder="Optional — a sentence or two helps us tailor the preview experience for you."></textarea>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="ndaConsent" name="ndaConsent" required />
+            <label for="ndaConsent">
+              I understand the preview requires signing a short NDA and providing feedback during a 2-week structured period.
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Submit request
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <div class="form-trust">
+            We'll only use your information to evaluate your preview request and contact you about BIGAN. Never shared, never sold.
+          </div>
+        </form>
+
+        <!-- Success state -->
+        <div class="success-state">
+          <div class="success-icon">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M5 14L11 20L23 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2 class="success-title">Request received.</h2>
+          <p class="success-msg">
+            Thanks for your interest in BIGAN. We'll review your request and reach out within a week with next steps. Cohort spots are limited — if it's a fit, we'll send the NDA and your access link together.
+          </p>
+          <div class="success-meta">
+            Watch your inbox for an email from <strong>hello@askbigan.com</strong>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand-line">
+      <img src="logo.png" alt="BIGAN" />
+      <span>BIGAN</span>
+      <span class="by-ahme">a product of ahme</span>
+    </div>
+    <div class="footer-meta">
+      © 2026 ahme
+      <a href="index.html">Home</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(event) {
+    event.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const card = document.getElementById('formCard');
+
+    // Disable button to prevent double-submit
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    // Simulate submission (replace with real endpoint when wiring up)
+    setTimeout(() => {
+      card.classList.add('is-success');
+      window.scrollTo({ top: card.offsetTop - 80, behavior: 'smooth' });
+    }, 700);
+  }
+</script>
+
+</body>
+</html>

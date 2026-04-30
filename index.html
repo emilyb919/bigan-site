@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BIGAN — The GMP AI Companion</title>
+<meta name="description" content="BIGAN is the AI companion built for pharmaceutical and biotech professionals. Role-specific GMP guidance across all 12 disciplines. No enterprise setup. Ready in seconds." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber-deep: #C45503;
+    --amber: #CE5F03;
+    --orange-warm: #E17709;
+    --orange: #DB6F17;
+    --gold: #F0A500;
+    --gold-bright: #F0B40F;
+    --yellow: #F0DC78;
+    --yellow-bright: #F0E169;
+
+    --ink: #0A0A0A;
+    --ink-soft: #2A2A2A;
+    --ink-mute: #6B6B6B;
+    --ink-faint: #A0A0A0;
+    --white: #FFFFFF;
+    --off-white: #FAFAFA;
+    --line: #ECECEC;
+    --line-strong: #D4D4D4;
+
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'Geist', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--ink);
+  }
+  .nav-brand img { width: 32px; height: 32px; object-fit: contain; }
+  .nav-brand-name {
+    font-weight: 700; font-size: 20px; letter-spacing: -0.03em;
+  }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    color: var(--ink-soft); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber-deep); }
+  .nav-cta {
+    background: var(--ink); color: var(--white);
+    padding: 9px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--amber-deep); }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 100px 32px 120px;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(240, 165, 0, 0.08) 0%, transparent 60%), var(--white);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; max-width: 1100px;
+    margin: 0 auto; text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px 6px 8px;
+    background: var(--white);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .hero-badge-dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-bright), var(--amber-deep));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white; font-size: 11px; font-weight: 700;
+  }
+  .hero h1 {
+    font-weight: 700;
+    font-size: clamp(48px, 7.5vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 1000px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero h1 em {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 400;
+    background: linear-gradient(135deg, var(--amber-deep) 0%, var(--gold) 70%, var(--gold-bright) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+  .hero-sub {
+    font-size: 21px; line-height: 1.5;
+    color: var(--ink-mute); margin-bottom: 44px;
+    max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+  .hero-actions {
+    display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap; justify-content: center;
+    margin-bottom: 56px;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--white);
+    padding: 16px 32px; border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+    border: 1px solid var(--ink);
+  }
+  .btn-primary:hover {
+    background: var(--amber-deep); border-color: var(--amber-deep);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    color: var(--ink); padding: 16px 28px;
+    border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--line-strong);
+    background: var(--white); transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--ink); }
+
+  .hero-logo-wrap {
+    position: relative;
+    width: 180px; height: 180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Soft warm illumination — breathes gently, like the star is casting light */
+  .hero-logo-glow {
+    position: absolute;
+    inset: -45%;
+    background: radial-gradient(
+      circle at center,
+      rgba(240, 220, 120, 0.45) 0%,
+      rgba(240, 165, 0, 0.28) 24%,
+      rgba(196, 85, 3, 0.08) 50%,
+      transparent 72%
+    );
+    border-radius: 50%;
+    filter: blur(24px);
+    animation: illuminate 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes illuminate {
+    0%, 100% { transform: scale(1);     opacity: 0.85; }
+    50%      { transform: scale(1.08);  opacity: 1; }
+  }
+
+  /* The star — crisp, with a gentle sway and warm drop-shadow */
+  .hero-logo {
+    position: relative;
+    width: 95%; height: 95%;
+    object-fit: contain;
+    z-index: 2;
+    filter:
+      drop-shadow(0 0 10px rgba(240, 220, 120, 0.6))
+      drop-shadow(0 0 28px rgba(240, 165, 0, 0.35));
+    animation: starSway 4s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes starSway {
+    0%, 100% { transform: translateY(0)    rotate(0deg);   }
+    25%      { transform: translateY(-5px) rotate(1deg);   }
+    50%      { transform: translateY(0)    rotate(0deg);   }
+    75%      { transform: translateY(-5px) rotate(-1deg);  }
+  }
+
+  /* ===== READY-NOW STRIP ===== */
+  .ready-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--off-white);
+    padding: 24px 32px;
+  }
+  .ready-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: center; align-items: center;
+    gap: 56px; flex-wrap: wrap;
+  }
+  .ready-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 500; color: var(--ink-soft);
+  }
+  .ready-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-bright), var(--amber-deep));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white; flex-shrink: 0;
+  }
+  .ready-check svg { width: 10px; height: 10px; }
+
+  /* ===== SECTIONS ===== */
+  section { position: relative; }
+  .section-inner {
+    max-width: 1280px; margin: 0 auto; padding: 120px 32px;
+  }
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 600;
+    color: var(--amber-deep); margin-bottom: 20px;
+    padding: 5px 12px;
+    background: rgba(240, 165, 0, 0.1);
+    border-radius: 999px;
+  }
+  .section-title {
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 880px;
+  }
+  .section-title em {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 400;
+    color: var(--amber-deep);
+    letter-spacing: -0.015em;
+  }
+  .section-lead {
+    font-size: 19px; line-height: 1.55;
+    color: var(--ink-mute);
+    max-width: 680px; margin-bottom: 72px;
+  }
+
+  /* ===== LIGHTWEIGHT ===== */
+  .lightweight {
+    background: var(--off-white);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .lightweight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 16px;
+  }
+  .light-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 32px;
+    transition: all 0.25s;
+  }
+  .light-card:hover {
+    border-color: var(--amber-deep);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(196, 85, 3, 0.08);
+  }
+  .light-card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--amber-deep), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px; color: white;
+  }
+  .light-card-icon svg { width: 24px; height: 24px; }
+  .light-card h3 {
+    font-weight: 700; font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 10px;
+  }
+  .light-card p {
+    color: var(--ink-mute);
+    font-size: 15px; line-height: 1.6;
+  }
+
+  /* ===== DOMAIN CHIPS ===== */
+  .domains-chips {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .domain-chip {
+    background: var(--white);
+    border: 1.5px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 14px 22px;
+    font-size: 15px; font-weight: 600;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .domain-chip:hover {
+    border-color: var(--amber-deep);
+    color: var(--amber-deep);
+    background: rgba(240, 165, 0, 0.04);
+    transform: translateY(-2px);
+  }
+  .domain-chip-icon {
+    width: 18px; height: 18px;
+    color: var(--amber-deep);
+    flex-shrink: 0;
+  }
+  .domain-chip-icon svg { width: 100%; height: 100%; }
+
+  /* ===== MODULES (DARK SECTION) ===== */
+  .modules-section {
+    background: var(--ink); color: var(--white); overflow: hidden;
+  }
+  .modules-section::before {
+    content: ''; position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 80%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .modules-section .section-eyebrow {
+    background: rgba(240, 165, 0, 0.15);
+    color: var(--gold-bright);
+  }
+  .modules-section .section-title { color: var(--white); }
+  .modules-section .section-title em { color: var(--gold-bright); }
+  .modules-section .section-lead { color: rgba(255, 255, 255, 0.6); }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .module-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 32px 28px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.25s;
+  }
+  .module-card:hover {
+    border-color: rgba(240, 165, 0, 0.4);
+    background: rgba(240, 165, 0, 0.05);
+    transform: translateY(-3px);
+  }
+  .module-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--amber-deep), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px; color: white;
+  }
+  .module-icon svg { width: 22px; height: 22px; }
+  .module-card h3 {
+    font-weight: 700; font-size: 19px;
+    letter-spacing: -0.02em;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .module-card p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px; line-height: 1.6;
+  }
+
+  /* ===== EVOLUTION ===== */
+  .evolution {
+    background: linear-gradient(135deg, #1A0E05 0%, #3D1F08 50%, var(--amber-deep) 100%);
+    color: var(--white); overflow: hidden;
+  }
+  .evolution::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(240, 165, 0, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 90% 20%, rgba(240, 220, 120, 0.15) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .evolution .section-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .evolution .section-eyebrow {
+    background: rgba(240, 220, 120, 0.18);
+    color: var(--yellow-bright);
+  }
+  .evolution .section-title { color: var(--white); margin-bottom: 28px; }
+  .evolution .section-title em { color: var(--yellow-bright); }
+  .evolution-lead {
+    font-size: 18px; line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 520px;
+  }
+  .evolution-roadmap {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px; padding: 36px;
+    backdrop-filter: blur(10px);
+  }
+  .roadmap-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .roadmap-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .roadmap-item:first-child { padding-top: 0; }
+  .roadmap-status {
+    flex-shrink: 0;
+    padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .status-live {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ADE80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+  .status-soon {
+    background: rgba(240, 220, 120, 0.2);
+    color: var(--yellow-bright);
+    border: 1px solid rgba(240, 220, 120, 0.3);
+  }
+  .status-planned {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .roadmap-content h4 {
+    font-weight: 600; font-size: 16px;
+    color: var(--white); margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .roadmap-content p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+  }
+
+  /* ===== ROLES ===== */
+  .roles-section { background: var(--white); }
+  .roles-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .role-chip {
+    background: var(--white);
+    border: 1.5px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 14px 22px;
+    font-size: 15px; font-weight: 600;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .role-chip:hover {
+    border-color: var(--amber-deep);
+    color: var(--amber-deep);
+    background: rgba(240, 165, 0, 0.04);
+    transform: translateY(-2px);
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    background: var(--off-white);
+    border-top: 1px solid var(--line);
+  }
+  .faq-list {
+    display: flex; flex-direction: column;
+    gap: 12px; max-width: 880px;
+  }
+  details.faq-item {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  details.faq-item[open] {
+    border-color: var(--amber-deep);
+    box-shadow: 0 8px 24px rgba(196, 85, 3, 0.06);
+  }
+  details.faq-item summary {
+    padding: 24px 28px;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    list-style: none;
+    font-weight: 600; font-size: 17px;
+    letter-spacing: -0.015em;
+    color: var(--ink); gap: 24px;
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line-strong);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s;
+    color: var(--ink-soft);
+  }
+  details[open] .faq-icon {
+    background: var(--amber-deep);
+    border-color: var(--amber-deep);
+    color: white;
+    transform: rotate(45deg);
+  }
+  .faq-icon svg { width: 12px; height: 12px; }
+  .faq-body {
+    padding: 0 28px 26px;
+    color: var(--ink-mute);
+    font-size: 15px; line-height: 1.65;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--amber-deep) 0%, var(--orange-warm) 50%, var(--gold) 100%);
+    color: white; text-align: center; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(255,255,255,0.18) 0%, transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(255,255,255,0.12) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .cta-section .section-inner {
+    position: relative; padding: 130px 32px;
+  }
+  .cta-section h2 {
+    font-weight: 700;
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 1; letter-spacing: -0.04em;
+    margin: 0 auto 24px; max-width: 880px;
+  }
+  .cta-section h2 em {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta-section p {
+    font-size: 19px; line-height: 1.55;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 560px; margin: 0 auto 40px;
+  }
+  .btn-cta {
+    background: var(--ink); color: white;
+    padding: 18px 40px; border-radius: 10px;
+    font-size: 16px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-block;
+    border: 2px solid var(--ink);
+  }
+  .btn-cta:hover { background: white; color: var(--ink); }
+
+  /* ===== DISCLAIMER ===== */
+  .disclaimer {
+    background: var(--white);
+    padding: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .disclaimer-inner {
+    max-width: 900px; margin: 0 auto;
+    text-align: center;
+    font-size: 13px; line-height: 1.65;
+    color: var(--ink-mute);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink); color: var(--white);
+    padding: 72px 32px 32px;
+  }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .footer-brand img { width: 32px; height: 32px; }
+  .footer-brand-name {
+    font-weight: 700; font-size: 20px; letter-spacing: -0.03em;
+  }
+  .footer-tag {
+    font-size: 14px; color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6; max-width: 280px;
+  }
+  .footer-tag a {
+    color: var(--gold-bright); text-decoration: none;
+  }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-bright); margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 14px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold-bright); }
+  .footer-bottom {
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(255, 255, 255, 0.45);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom a {
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none; margin-left: 24px;
+  }
+  .footer-bottom a:hover { color: var(--gold-bright); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .modules-grid { grid-template-columns: repeat(2, 1fr); }
+    .lightweight-grid { grid-template-columns: 1fr; }
+    .evolution .section-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .hero { padding: 64px 20px 80px; }
+    .section-inner { padding: 80px 20px; }
+    .modules-grid { grid-template-columns: 1fr; }
+    .ready-inner { gap: 16px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-bottom a { margin-left: 0; margin-right: 20px; }
+    .cta-section .section-inner { padding: 80px 20px; }
+    .evolution-roadmap { padding: 24px; }
+  }
+  @media (max-width: 500px) {
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge { animation: fadeUp 0.7s ease-out 0.1s both; }
+  .hero h1 { animation: fadeUp 0.7s ease-out 0.2s both; }
+  .hero-sub { animation: fadeUp 0.7s ease-out 0.35s both; }
+  .hero-actions { animation: fadeUp 0.7s ease-out 0.5s both; }
+  .hero-logo-wrap { animation: fadeUp 0.9s ease-out 0.6s both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <img src="logo.png" alt="BIGAN logo" />
+      <span class="nav-brand-name">BIGAN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#domains">Domains</a>
+      <a href="#tools">Tools</a>
+      <a href="#evolution">Roadmap</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="nav-cta">Log in</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot">★</span>
+      <span>Now in preview · Pharma &amp; Biotech</span>
+    </div>
+    <h1>The GMP companion for <em>every question, every role.</em></h1>
+    <p class="hero-sub">
+      BIGAN is the AI built for pharmaceutical and biotech professionals — instant guidance across all twelve GMP disciplines, ready the moment you log in.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Request preview access</a>
+      <a href="#tools" class="btn-secondary">See what's inside →</a>
+    </div>
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-glow"></div>
+      <img src="logo.png" alt="BIGAN" class="hero-logo" />
+    </div>
+  </div>
+</section>
+
+<!-- READY-NOW STRIP -->
+<div class="ready-strip">
+  <div class="ready-inner">
+    <div class="ready-item">
+      <span class="ready-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      No enterprise setup
+    </div>
+    <div class="ready-item">
+      <span class="ready-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      No IT integration
+    </div>
+    <div class="ready-item">
+      <span class="ready-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Works on any device
+    </div>
+    <div class="ready-item">
+      <span class="ready-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Ready in 60 seconds
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTWEIGHT -->
+<section class="lightweight">
+  <div class="section-inner">
+    <span class="section-eyebrow">Built for individuals</span>
+    <h2 class="section-title">A personal companion. <em>Not a platform rollout.</em></h2>
+    <p class="section-lead">
+      BIGAN is a lightweight subscription you control yourself. No vendor onboarding, no procurement cycles, no Part 11 implementation — just open it and start working.
+    </p>
+
+    <div class="lightweight-grid">
+      <div class="light-card">
+        <div class="light-card-icon">
+          <!-- Lightning bolt: instant -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor"/></svg>
+        </div>
+        <h3>Sign up &amp; go</h3>
+        <p>Subscribe in your browser, pick your role, and BIGAN is ready. No demos, no sales calls, no procurement gauntlet.</p>
+      </div>
+      <div class="light-card">
+        <div class="light-card-icon">
+          <!-- Shield: outside regulatory scope -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></svg>
+        </div>
+        <h3>Outside regulatory scope</h3>
+        <p>BIGAN doesn't store records, integrate with company systems, or act as a Part 11 tool. It's a reference companion, deliberately scoped.</p>
+      </div>
+      <div class="light-card">
+        <div class="light-card-icon">
+          <!-- User: personal, follows you -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Yours, not your employer's</h3>
+        <p>BIGAN moves with you. Your subscription, your tool — build expertise that follows your career, not your org chart.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section id="domains">
+  <div class="section-inner">
+    <span class="section-eyebrow">Twelve Knowledge Domains</span>
+    <h2 class="section-title">The whole GMP landscape, <em>in one place.</em></h2>
+    <p class="section-lead">
+      Most tools cover one corner of compliance. BIGAN covers all of it — so consultants, QA professionals, and operators have one trusted place to turn, no matter where the question comes from.
+    </p>
+
+    <div class="domains-chips">
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg></span>
+        Quality Systems Management
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        Deviations &amp; CAPA
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        Inspection &amp; Audit Readiness
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+        Validation &amp; Qualification
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span>
+        QC Microbiology &amp; Contamination Control
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31l-5.66 9.8A2 2 0 0 0 6.07 22h11.86a2 2 0 0 0 1.73-2.89L14 9.31V2"/><line x1="9" y1="2" x2="15" y2="2"/></svg></span>
+        Analytical Assays
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        Process &amp; Manufacturing
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg></span>
+        Facilities &amp; Engineering
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+        Information Technology
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+        Supply Chain &amp; Materials
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+        Packaging, Labeling &amp; Distribution
+      </div>
+      <div class="domain-chip">
+        <span class="domain-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+        Operational Excellence
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="tools" class="modules-section">
+  <div class="section-inner">
+    <span class="section-eyebrow">Practical Tools</span>
+    <h2 class="section-title">Built for the work, <em>not the slides.</em></h2>
+    <p class="section-lead">
+      Six cross-cutting modules turn GMP knowledge into something you can use today — drafts, checklists, audits, and references that meet you in the moment.
+    </p>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Risk Management Tools</h3>
+        <p>Fishbone diagrams, FMEA scaffolds, and structured probes that take cause analysis from blank page to working draft.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <h3>OpEx Vision Audit</h3>
+        <p>Walk a process, score the gaps, and surface improvement opportunities grounded in operational excellence principles.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>Document Builder</h3>
+        <p>Generate SOPs, work instructions, and job aids personalized to your company name, numbering format, and region.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Good Documentation Practices</h3>
+        <p>Real-time checks against GDP principles — from ALCOA+ to data integrity expectations.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3>Regulatory Intelligence</h3>
+        <p>Stay current on FDA, ICH, EU GMP, and other framework updates that touch your day-to-day.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <h3>Project Management &amp; Analytics</h3>
+        <p>Track initiatives, milestones, and trends across your areas of responsibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUTION -->
+<section id="evolution" class="evolution">
+  <div class="section-inner">
+    <div>
+      <span class="section-eyebrow">Always Evolving</span>
+      <h2 class="section-title">A companion that <em>grows with you.</em></h2>
+      <p class="evolution-lead">
+        BIGAN isn't shipped and forgotten. New tools, deeper domain coverage, and emerging regulatory updates roll out continuously — guided by what subscribers actually need. You're not buying a product. You're joining one in motion.
+      </p>
+    </div>
+
+    <div class="evolution-roadmap">
+      <div class="roadmap-item">
+        <span class="roadmap-status status-live">Live</span>
+        <div class="roadmap-content">
+          <h4>12 Domains &amp; 6 Tools</h4>
+          <p>Full GMP coverage and core working modules.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-soon">Next</span>
+        <div class="roadmap-content">
+          <h4>Visual Data Review Tool</h4>
+          <p>Built for QA reviewers and on-the-floor teams to spot trends, anomalies, and review-by-exception opportunities.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-soon">Next</span>
+        <div class="roadmap-content">
+          <h4>Expanded Regulatory Guidance Library</h4>
+          <p>Deeper coverage across FDA, ICH, EU GMP, USP, PDA, and ISPE frameworks — broader, faster, more current.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-planned">Planned</span>
+        <div class="roadmap-content">
+          <h4>Inspection Simulator</h4>
+          <p>Practice mock inspections with realistic auditor scenarios.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-planned">Planned</span>
+        <div class="roadmap-content">
+          <h4>Team workspaces</h4>
+          <p>Optional collaboration features for consulting cohorts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section class="roles-section">
+  <div class="section-inner">
+    <span class="section-eyebrow">For Every Role</span>
+    <h2 class="section-title">Tuned to <em>how you actually work.</em></h2>
+    <p class="section-lead">
+      BIGAN adapts to your role from day one. The questions you face, the documents you draft, and the tools you reach for first are all shaped by what you do.
+    </p>
+
+    <div class="roles-grid">
+      <div class="role-chip">QA Associate</div>
+      <div class="role-chip">QC Specialist</div>
+      <div class="role-chip">Engineer</div>
+      <div class="role-chip">Manufacturing &amp; Process Associate</div>
+      <div class="role-chip">Supply Chain Lead</div>
+      <div class="role-chip">EHS Manager</div>
+      <div class="role-chip">Executive / Director</div>
+      <div class="role-chip">Consultant</div>
+      <div class="role-chip">Other</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+  <div class="section-inner">
+    <span class="section-eyebrow">Frequently Asked</span>
+    <h2 class="section-title">Questions worth <em>asking first.</em></h2>
+    <p class="section-lead">
+      The pharma and biotech world is careful for good reason. Here are the things most people want to know before getting started.
+    </p>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>
+          Is BIGAN a regulated tool? Do I need to validate it?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          BIGAN is intentionally scoped outside regulatory scrutiny. It doesn't store GxP records, doesn't integrate with company systems, and isn't a Part 11 tool. Every output is a reference framework that you take back to your own quality system for formal review and approval. Think of it as a personal advisor, not a controlled document repository.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          What's the difference between BIGAN and a general AI like ChatGPT?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          General AI tools are trained broadly and don't know GMP from GAMP. BIGAN is built specifically for pharmaceutical and biotech work, grounded in FDA, ICH, EU GMP, USP, PDA, ISPE, and ISO frameworks. It also includes purpose-built tools — Risk Management, Document Builder, OpEx Audit — that a chat interface alone can't deliver.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Do I need IT approval or a procurement process to use it?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          No. BIGAN is a personal subscription. Sign up in your browser, pay yourself, and you're working in under a minute. No vendor questionnaires, no integration projects, no Part 11 assessments. It works on any device with a browser — corporate IT environments included.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Who is BIGAN for?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          Anyone working in or around GMP — from new hires who need a fast on-ramp, to seasoned QA leaders, to consultants juggling unpredictable cross-domain questions. BIGAN tailors itself to your role on day one and grows more useful as your responsibilities expand.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          Can I use BIGAN's outputs in regulatory submissions or formal SOPs?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          BIGAN outputs are starting points and reference frameworks — not finished, approvable documents. Anything you generate must go through your own organization's quality review and approval process before being used in regulated activities. Every output carries a clear disclaimer to that effect.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          How does BIGAN stay current with regulatory changes?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          The Regulatory Intelligence module surfaces relevant FDA, ICH, EU GMP, and other framework updates as they happen. New tools and deeper domain coverage are added on a continuous roadmap shaped by subscriber feedback — BIGAN is designed to grow with the field, not freeze at launch.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          What does it cost?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          BIGAN is a personal monthly or annual subscription priced for individual professionals — not enterprise contracts. Preview cohort participants get free access during the beta period in exchange for feedback. Pricing details will be shared with the preview cohort first.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          What about my data privacy?
+          <span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </summary>
+        <div class="faq-body">
+          BIGAN is designed for personal use without storing GxP records or company-confidential information. Don't paste anything into BIGAN you wouldn't be comfortable putting into any cloud-based AI tool. We treat your conversations as private to your account and never share them with employers or third parties.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Be among the first to <em>try BIGAN.</em></h2>
+    <p>We're inviting a small cohort of pharma and biotech professionals to preview BIGAN before public launch. Free access in exchange for early feedback.</p>
+    <a href="#" class="btn-cta">Request preview access</a>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    BIGAN provides reference frameworks and informational guidance only. All outputs require formal review and approval through your organization's quality system before use in regulated activities.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="logo.png" alt="BIGAN" />
+          <span class="footer-brand-name">BIGAN</span>
+        </div>
+        <p class="footer-tag">The AI companion for pharmaceutical and biotech professionals. A product of <a href="#">ahme</a>.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#domains">Domains</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#evolution">Roadmap</a></li>
+          <li><a href="#">Preview access</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About ahme</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ahme. All rights reserved.</span>
+      <div>
+        <a href="#">askbigan.com</a>
+        <a href="mailto:hello@askbigan.com">hello@askbigan.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — BIGAN</title>
+<meta name="description" content="BIGAN Privacy Policy. Information about how we collect, use, and protect your data." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber-deep: #C45503;
+    --gold: #F0A500;
+    --gold-bright: #F0B40F;
+    --yellow-bright: #F0E169;
+    --ink: #0A0A0A;
+    --ink-soft: #2A2A2A;
+    --ink-mute: #6B6B6B;
+    --ink-faint: #A0A0A0;
+    --white: #FFFFFF;
+    --off-white: #FAFAFA;
+    --line: #ECECEC;
+    --line-strong: #D4D4D4;
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'Geist', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--ink);
+  }
+  .nav-brand img { width: 32px; height: 32px; object-fit: contain; }
+  .nav-brand-name { font-weight: 700; font-size: 20px; letter-spacing: -0.03em; }
+
+  .nav-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--ink-mute); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--amber-deep); }
+
+  .legal-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 32px 100px;
+  }
+
+  .legal-eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 600;
+    color: var(--amber-deep);
+    margin-bottom: 20px;
+    padding: 5px 12px;
+    background: rgba(240, 165, 0, 0.1);
+    border-radius: 999px;
+  }
+
+  .legal-page h1 {
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin-bottom: 16px;
+  }
+
+  .legal-page h1 em {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 400;
+    color: var(--amber-deep);
+  }
+
+  .legal-meta {
+    color: var(--ink-mute);
+    font-size: 15px;
+    margin-bottom: 48px;
+  }
+
+  .status-banner {
+    background: linear-gradient(135deg, rgba(240, 220, 120, 0.15), rgba(240, 165, 0, 0.08));
+    border: 1px solid rgba(196, 85, 3, 0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .status-banner-label {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--amber-deep);
+    color: white;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+
+  .status-banner h2 {
+    font-weight: 700; font-size: 20px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .status-banner p {
+    color: var(--ink-soft);
+    font-size: 15px; line-height: 1.6;
+  }
+
+  .legal-page h2 {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    margin-top: 40px;
+    margin-bottom: 14px;
+  }
+
+  .legal-page h3 {
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  .legal-page p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .legal-page ul {
+    margin: 0 0 16px 22px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .legal-page li { margin-bottom: 8px; }
+
+  .legal-page a {
+    color: var(--amber-deep);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .legal-page a:hover { text-decoration: underline; }
+
+  .contact-card {
+    background: var(--off-white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 48px;
+  }
+
+  .contact-card h3 {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-deep);
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+
+  .contact-card p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+
+  footer {
+    background: var(--ink); color: var(--white);
+    padding: 40px 32px;
+  }
+  .footer-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand-line {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .footer-brand-line img { width: 24px; height: 24px; }
+  .footer-brand-line span {
+    font-weight: 600; font-size: 15px; letter-spacing: -0.02em;
+  }
+  .footer-brand-line .by-ahme {
+    font-weight: 400; font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 6px;
+  }
+  .footer-meta {
+    font-size: 13px; color: rgba(255, 255, 255, 0.5);
+  }
+  .footer-meta a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.2s;
+  }
+  .footer-meta a:hover { color: var(--gold-bright); }
+
+  @media (max-width: 640px) {
+    .legal-page { padding: 48px 20px 60px; }
+    .nav-inner { padding: 14px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="logo.png" alt="BIGAN logo" />
+      <span class="nav-brand-name">BIGAN</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to home
+    </a>
+  </div>
+</nav>
+
+<div class="legal-page">
+
+  <span class="legal-eyebrow">Privacy</span>
+  <h1>Privacy <em>Policy</em></h1>
+  <p class="legal-meta">Last updated: pending publication</p>
+
+  <h2>What we collect</h2>
+  <p>BIGAN is designed to collect only the information needed to operate the service:</p>
+  <ul>
+    <li>Account information you provide (email, name, professional role, experience level)</li>
+    <li>Subscription and payment information (processed securely by our payment provider)</li>
+    <li>Content you create within BIGAN — your conversations, generated documents, saved bookmarks</li>
+    <li>Basic usage analytics in anonymized or de-identified form to improve the product</li>
+  </ul>
+
+  <h2>How we use it</h2>
+  <p>We use your information to deliver the service, personalize responses to your role and experience, process subscription payments, and continuously improve BIGAN. We do not sell your data, share it with advertisers, or use it for cross-platform tracking.</p>
+
+  <h2>How we work with AI providers</h2>
+  <p>BIGAN's AI responses are generated using Anthropic's Claude API. Your messages and relevant context are transmitted to Anthropic for the sole purpose of generating responses to your questions. Anthropic does not use API inputs or outputs to train its models.</p>
+
+  <h2>What we do not do</h2>
+  <ul>
+    <li>We do not train AI models on your conversations or uploads</li>
+    <li>We do not store GxP records or act as a regulatory record system</li>
+    <li>We do not share your conversations with your employer or third parties</li>
+    <li>We do not sell your data, ever</li>
+  </ul>
+
+  <h2>Your rights</h2>
+  <p>You will have the right to access, correct, export, and delete your personal information at any time. The full Privacy Policy will detail these rights and how to exercise them under applicable laws including GDPR and CCPA.</p>
+
+  <h2>Sensitive content guidance</h2>
+  <p>BIGAN is designed for personal professional use. We recommend that you do not paste GxP records, patient information, or company-confidential content into BIGAN — the same caution you would apply to any cloud-based AI tool.</p>
+
+  <div class="contact-card">
+    <h3>Questions about privacy?</h3>
+    <p>Contact us at <a href="mailto:info@ahme.ai">info@ahme.ai</a> with any questions while the full policy is being finalized.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand-line">
+      <img src="logo.png" alt="BIGAN" />
+      <span>BIGAN</span>
+      <span class="by-ahme">a product of ahme</span>
+    </div>
+    <div class="footer-meta">
+      © 2026 ahme
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
